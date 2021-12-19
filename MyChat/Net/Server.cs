@@ -15,6 +15,8 @@ namespace MyChat.Net
         public PacketReader packetReader;
 
         public event Action connectedEvent;
+        public event Action msgRecivedMessageEvent;
+        public event Action userDisconnectEvent;
         public Server()
         {
             _client = new TcpClient();
@@ -47,6 +49,12 @@ namespace MyChat.Net
                     {
                         case 1:
                             connectedEvent?.Invoke();
+                            break;
+                        case 5:
+                            msgRecivedMessageEvent?.Invoke();
+                            break;
+                        case 10:
+                            userDisconnectEvent?.Invoke();
                             break;
                         default:
                             Console.WriteLine("ah yes...");

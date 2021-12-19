@@ -25,8 +25,8 @@
                 </ListView.ItemTemplate>
                 </ListView>
         </DockPanel>
-        <StackPanel Grid.Column="1">
-            <ListView Height="300"/>
+        <StackPanel Grid.ColumnSpan="2" Margin="190,0,10,0">
+            <ListView Height="300" ItemsSource="{Binding Messages}"/>
             <StackPanel Orientation="Horizontal">
                 <TextBox Height="55" Width="545" VerticalContentAlignment="Center" Text="{Binding Message , UpdateSourceTrigger=PropertyChanged}"  />
                 <Button Width="55" Content="Send" Command="{Binding SendMessageCommand}"/>
