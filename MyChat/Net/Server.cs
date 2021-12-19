@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyChat.Net.IO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Sockets;
@@ -20,6 +21,10 @@ namespace MyChat.Net
             if (!_client.Connected)
             {
                 _client.Connect("127.0.0.1", 7891);
+                var connectionPacket = new PacketBuilder();
+                connectionPacket.WriteOpCode(0);
+                connectionPacket.WriteString(username);
+                _client.Client.Send(connectionPacket.GetPacketBytes());
             }
         }
     }
